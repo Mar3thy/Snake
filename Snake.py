@@ -33,23 +33,23 @@ class SNAKE:
         self.direction = Vector2(0,0)
         self.new_block = False
 
-        self.head_up = pygame.image.load('pygame_app/Graphics/head_up.png').convert_alpha()
-        self.head_down = pygame.image.load('pygame_app/Graphics/head_down.png').convert_alpha()
-        self.head_right = pygame.image.load('pygame_app/Graphics/head_right.png').convert_alpha()
-        self.head_left = pygame.image.load('pygame_app/Graphics/head_left.png').convert_alpha()
+        self.head_up = pygame.image.load('pygame_app/Graphics/blue/head_up.png').convert_alpha()
+        self.head_down = pygame.image.load('pygame_app/Graphics/blue/head_down.png').convert_alpha()
+        self.head_right = pygame.image.load('pygame_app/Graphics/blue/head_right.png').convert_alpha()
+        self.head_left = pygame.image.load('pygame_app/Graphics/blue/head_left.png').convert_alpha()
 		
-        self.tail_up = pygame.image.load('pygame_app/Graphics/tail_up.png').convert_alpha()
-        self.tail_down = pygame.image.load('pygame_app/Graphics/tail_down.png').convert_alpha()
-        self.tail_right = pygame.image.load('pygame_app/Graphics/tail_right.png').convert_alpha()
-        self.tail_left = pygame.image.load('pygame_app/Graphics/tail_left.png').convert_alpha()
+        self.tail_up = pygame.image.load('pygame_app/Graphics/blue/tail_up.png').convert_alpha()
+        self.tail_down = pygame.image.load('pygame_app/Graphics/blue/tail_down.png').convert_alpha()
+        self.tail_right = pygame.image.load('pygame_app/Graphics/blue/tail_right.png').convert_alpha()
+        self.tail_left = pygame.image.load('pygame_app/Graphics/blue/tail_left.png').convert_alpha()
 
-        self.body_vertical = pygame.image.load('pygame_app/Graphics/body_vertical.png').convert_alpha()
-        self.body_horizontal = pygame.image.load('pygame_app/Graphics/body_horizontal.png').convert_alpha()
+        self.body_vertical = pygame.image.load('pygame_app/Graphics/blue/body_vertical.png').convert_alpha()
+        self.body_horizontal = pygame.image.load('pygame_app/Graphics/blue/body_horizontal.png').convert_alpha()
 
-        self.body_tr = pygame.image.load('pygame_app/Graphics/body_tr.png').convert_alpha()
-        self.body_tl = pygame.image.load('pygame_app/Graphics/body_tl.png').convert_alpha()
-        self.body_br = pygame.image.load('pygame_app/Graphics/body_br.png').convert_alpha()
-        self.body_bl = pygame.image.load('pygame_app/Graphics/body_bl.png').convert_alpha()
+        self.body_tr = pygame.image.load('pygame_app/Graphics/blue/body_tr.png').convert_alpha()
+        self.body_tl = pygame.image.load('pygame_app/Graphics/blue/body_tl.png').convert_alpha()
+        self.body_br = pygame.image.load('pygame_app/Graphics/blue/body_br.png').convert_alpha()
+        self.body_bl = pygame.image.load('pygame_app/Graphics/blue/body_bl.png').convert_alpha()
     
         self.crunch_sound = pygame.mixer.Sound('pygame_app/Sound/503492__larakaa__yumyum.wav')
 
@@ -215,7 +215,7 @@ cell_number = 20
 screen = pygame.display.set_mode((cell_number * cell_size, cell_number * cell_size)) # Erzeugt ein display mit 600 x 600 pixeln
 pygame.display.set_caption('Sneeek') # Setzt den Titel des Fensters
 clock = pygame.time.Clock() # Objekt, das das 'vergehen der Zeit' im spiel festlegt 
-apple = pygame.image.load('pygame_app/Graphics/apple.png').convert_alpha()
+apple = pygame.image.load('pygame_app/Graphics/fruits/apple.png').convert_alpha()
 game_font = pygame.font.Font('pygame_app/Font/TheHand.ttf', 25)
 
 start_img = pygame.image.load('pygame_app/Graphics/Buttons/start.png').convert_alpha()
@@ -234,8 +234,10 @@ start_button = Button(150, 200, start_img, 0.8, start_rect)
 exit_rect = exit_img.get_rect(center = ((cell_number*cell_size)/2, 300))
 exit_button = Button(150, 300, exit_img, 0.8, exit_rect)
 game_paused = False
+button_pressed = False # True / false nach bewegungseingabe einstellen, dass nicht direkt nacheinander die buttons gedrückt werden können
 
 while True:
+    button_pressed = False
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -243,21 +245,20 @@ while True:
         if event.type == SCREEN_UPDATE:
             main_game.update()
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP or event.key == pygame.K_w:
+            if (event.key == pygame.K_UP and not button_pressed) or (event.key == pygame.K_w and not button_pressed):
                 if main_game.snake.direction.y != 1:
                     main_game.snake.direction = Vector2(0,-1)
-            if event.key == pygame.K_DOWN or event.key == pygame.K_s:
+            if (event.key == pygame.K_DOWN and not button_pressed) or (event.key == pygame.K_s and not button_pressed):
                 if main_game.snake.direction.y != -1:
                     main_game.snake.direction = Vector2(0,1)
-            if event.key == pygame.K_LEFT or event.key == pygame.K_a:
+            if (event.key == pygame.K_LEFT and not button_pressed) or (event.key == pygame.K_a and not button_pressed):
                 if main_game.snake.direction.x != 1:
                     main_game.snake.direction = Vector2(-1,0)
-            if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
+            if (event.key == pygame.K_RIGHT and not button_pressed) or (event.key == pygame.K_d and not button_pressed):
                 if main_game.snake.direction.x != -1:
                     main_game.snake.direction = Vector2(1,0)
-            if event.key == pygame.K_SPACE:
-                main_game.snake.direction = Vector2(0,0)
-
+            button_pressed = True
+            
             if event.key == pygame.K_ESCAPE:
                 game_paused = True
     
