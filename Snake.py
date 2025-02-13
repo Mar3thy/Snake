@@ -33,23 +33,23 @@ class SNAKE:
         self.direction = Vector2(0,0)
         self.new_block = False
 
-        self.head_up = pygame.image.load('pygame_app/Graphics/blue/head_up.png').convert_alpha()
-        self.head_down = pygame.image.load('pygame_app/Graphics/blue/head_down.png').convert_alpha()
-        self.head_right = pygame.image.load('pygame_app/Graphics/blue/head_right.png').convert_alpha()
-        self.head_left = pygame.image.load('pygame_app/Graphics/blue/head_left.png').convert_alpha()
+        self.head_up = pygame.image.load('pygame_app/Graphics/snakes/b_head_up.png').convert_alpha()
+        self.head_down = pygame.image.load('pygame_app/Graphics/snakes/b_head_down.png').convert_alpha()
+        self.head_right = pygame.image.load('pygame_app/Graphics/snakes/b_head_right.png').convert_alpha()
+        self.head_left = pygame.image.load('pygame_app/Graphics/snakes/b_head_left.png').convert_alpha()
 		
-        self.tail_up = pygame.image.load('pygame_app/Graphics/blue/tail_up.png').convert_alpha()
-        self.tail_down = pygame.image.load('pygame_app/Graphics/blue/tail_down.png').convert_alpha()
-        self.tail_right = pygame.image.load('pygame_app/Graphics/blue/tail_right.png').convert_alpha()
-        self.tail_left = pygame.image.load('pygame_app/Graphics/blue/tail_left.png').convert_alpha()
+        self.tail_up = pygame.image.load('pygame_app/Graphics/snakes/b_tail_up.png').convert_alpha()
+        self.tail_down = pygame.image.load('pygame_app/Graphics/snakes/b_tail_down.png').convert_alpha()
+        self.tail_right = pygame.image.load('pygame_app/Graphics/snakes/b_tail_right.png').convert_alpha()
+        self.tail_left = pygame.image.load('pygame_app/Graphics/snakes/b_tail_left.png').convert_alpha()
 
-        self.body_vertical = pygame.image.load('pygame_app/Graphics/blue/body_vertical.png').convert_alpha()
-        self.body_horizontal = pygame.image.load('pygame_app/Graphics/blue/body_horizontal.png').convert_alpha()
+        self.body_vertical = pygame.image.load('pygame_app/Graphics/snakes/b_body_vertical.png').convert_alpha()
+        self.body_horizontal = pygame.image.load('pygame_app/Graphics/snakes/b_body_horizontal.png').convert_alpha()
 
-        self.body_tr = pygame.image.load('pygame_app/Graphics/blue/body_tr.png').convert_alpha()
-        self.body_tl = pygame.image.load('pygame_app/Graphics/blue/body_tl.png').convert_alpha()
-        self.body_br = pygame.image.load('pygame_app/Graphics/blue/body_br.png').convert_alpha()
-        self.body_bl = pygame.image.load('pygame_app/Graphics/blue/body_bl.png').convert_alpha()
+        self.body_tr = pygame.image.load('pygame_app/Graphics/snakes/b_body_tr.png').convert_alpha()
+        self.body_tl = pygame.image.load('pygame_app/Graphics/snakes/b_body_tl.png').convert_alpha()
+        self.body_br = pygame.image.load('pygame_app/Graphics/snakes/b_body_br.png').convert_alpha()
+        self.body_bl = pygame.image.load('pygame_app/Graphics/snakes/b_body_bl.png').convert_alpha()
     
         self.crunch_sound = pygame.mixer.Sound('pygame_app/Sound/503492__larakaa__yumyum.wav')
 
@@ -210,7 +210,7 @@ class MAIN:
 
 pygame.mixer.pre_init(44100, -16, 2, 512)
 pygame.init()
-cell_size = 30
+cell_size = 40
 cell_number = 20
 screen = pygame.display.set_mode((cell_number * cell_size, cell_number * cell_size)) # Erzeugt ein display mit 600 x 600 pixeln
 pygame.display.set_caption('Sneeek') # Setzt den Titel des Fensters
