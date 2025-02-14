@@ -34,25 +34,25 @@ class SNAKE:
         self.new_block = False
         self.color = color
 
-        self.head_up = pygame.image.load(f'pygame_app/snake/Graphics/snakes/{color}_head_up.png').convert_alpha()
-        self.head_down = pygame.image.load(f'pygame_app/snake/Graphics/snakes/{color}_head_down.png').convert_alpha()
-        self.head_right = pygame.image.load(f'pygame_app/snake/Graphics/snakes/{color}_head_right.png').convert_alpha()
-        self.head_left = pygame.image.load(f'pygame_app/snake/Graphics/snakes/{color}_head_left.png').convert_alpha()
+        self.head_up = pygame.image.load(f'pygame_app/Graphics/snakes/{color}_head_up.png').convert_alpha()
+        self.head_down = pygame.image.load(f'pygame_app/Graphics/snakes/{color}_head_down.png').convert_alpha()
+        self.head_right = pygame.image.load(f'pygame_app/Graphics/snakes/{color}_head_right.png').convert_alpha()
+        self.head_left = pygame.image.load(f'pygame_app/Graphics/snakes/{color}_head_left.png').convert_alpha()
         
-        self.tail_up = pygame.image.load(f'pygame_app/snake/Graphics/snakes/{color}_tail_up.png').convert_alpha()
-        self.tail_down = pygame.image.load(f'pygame_app/snake/Graphics/snakes/{color}_tail_down.png').convert_alpha()
-        self.tail_right = pygame.image.load(f'pygame_app/snake/Graphics/snakes/{color}_tail_right.png').convert_alpha()
-        self.tail_left = pygame.image.load(f'pygame_app/snake/Graphics/snakes/{color}_tail_left.png').convert_alpha()
+        self.tail_up = pygame.image.load(f'pygame_app/Graphics/snakes/{color}_tail_up.png').convert_alpha()
+        self.tail_down = pygame.image.load(f'pygame_app/Graphics/snakes/{color}_tail_down.png').convert_alpha()
+        self.tail_right = pygame.image.load(f'pygame_app/Graphics/snakes/{color}_tail_right.png').convert_alpha()
+        self.tail_left = pygame.image.load(f'pygame_app/Graphics/snakes/{color}_tail_left.png').convert_alpha()
 
-        self.body_vertical = pygame.image.load(f'pygame_app/snake/Graphics/snakes/{color}_body_vertical.png').convert_alpha()
-        self.body_horizontal = pygame.image.load(f'pygame_app/snake/Graphics/snakes/{color}_body_horizontal.png').convert_alpha()
+        self.body_vertical = pygame.image.load(f'pygame_app/Graphics/snakes/{color}_body_vertical.png').convert_alpha()
+        self.body_horizontal = pygame.image.load(f'pygame_app/Graphics/snakes/{color}_body_horizontal.png').convert_alpha()
 
-        self.body_tr = pygame.image.load(f'pygame_app/snake/Graphics/snakes/{color}_body_tr.png').convert_alpha()
-        self.body_tl = pygame.image.load(f'pygame_app/snake/Graphics/snakes/{color}_body_tl.png').convert_alpha()
-        self.body_br = pygame.image.load(f'pygame_app/snake/Graphics/snakes/{color}_body_br.png').convert_alpha()
-        self.body_bl = pygame.image.load(f'pygame_app/snake/Graphics/snakes/{color}_body_bl.png').convert_alpha()
+        self.body_tr = pygame.image.load(f'pygame_app/Graphics/snakes/{color}_body_tr.png').convert_alpha()
+        self.body_tl = pygame.image.load(f'pygame_app/Graphics/snakes/{color}_body_tl.png').convert_alpha()
+        self.body_br = pygame.image.load(f'pygame_app/Graphics/snakes/{color}_body_br.png').convert_alpha()
+        self.body_bl = pygame.image.load(f'pygame_app/Graphics/snakes/{color}_body_bl.png').convert_alpha()
     
-        self.crunch_sound = pygame.mixer.Sound('pygame_app/snake/Sound/503492__larakaa__yumyum.wav')
+        self.crunch_sound = pygame.mixer.Sound('pygame_app/Sound/503492__larakaa__yumyum.wav')
 
     def draw_snake(self):
         self.update_head_graphics()
@@ -231,23 +231,23 @@ class MAIN:
 
         # Read the current high score from the file
         try:
-            with open('pygame_app/snake/highscore.txt', 'r') as file:
+            with open('pygame_app/highscore.txt', 'r') as file:
                 highscore = int(file.readline())
         except FileNotFoundError:
             # If the file does not exist, create it with the current score
-            with open('pygame_app/snake/highscore.txt', 'w') as file:
+            with open('pygame_app/highscore.txt', 'w') as file:
                 file.write(str(previous_score))
             highscore = previous_score
         except ValueError:
             # If the file is empty, write the current score to it
-            with open('pygame_app/snake/highscore.txt', 'w') as file:
+            with open('pygame_app/highscore.txt', 'w') as file:
                 file.write(str(previous_score))
             highscore = previous_score
 
         # Update the high score if the current score is higher
         if previous_score > highscore:
             highscore = previous_score
-            with open('pygame_app/snake/highscore.txt', 'w') as file:
+            with open('pygame_app/highscore.txt', 'w') as file:
                 file.write(str(highscore))
 
         self.snake.reset()
@@ -273,11 +273,11 @@ class MAIN:
         apple_rect = apple.get_rect(midright = (score_rect.left, score_rect.centery))
 
         try :
-            with open('pygame_app/snake/highscore.txt', 'r') as file:
+            with open('pygame_app/highscore.txt', 'r') as file:
                 for line in file:
                     highscore = int(line)
         except FileNotFoundError:
-            with open('pygame_app/snake/highscore.txt', 'w') as file:
+            with open('pygame_app/highscore.txt', 'w') as file:
                 file.write(str(highscore))
         hs_text = str(highscore)
         hs_surface = game_font.render(hs_text, True, (font_r, font_g, font_b))
@@ -304,17 +304,17 @@ cell_number = 20
 screen = pygame.display.set_mode((cell_number * cell_size, cell_number * cell_size)) # Erzeugt ein display mit 600 x 600 pixeln
 pygame.display.set_caption('Sneeek') # Setzt den Titel des Fensters
 clock = pygame.time.Clock() # Objekt, das das 'vergehen der Zeit' im spiel festlegt 
-apple = pygame.image.load('pygame_app/snake/Graphics/fruits/apple.png').convert_alpha()
-grape = pygame.image.load('pygame_app/snake/Graphics/fruits/grape.png').convert_alpha()
-lemon = pygame.image.load('pygame_app/snake/Graphics/fruits/lemon.png').convert_alpha()
-game_font = pygame.font.Font('pygame_app/snake/Font/TheHand.ttf', 25)
+apple = pygame.image.load('pygame_app/Graphics/fruits/apple.png').convert_alpha()
+grape = pygame.image.load('pygame_app/Graphics/fruits/grape.png').convert_alpha()
+lemon = pygame.image.load('pygame_app/Graphics/fruits/lemon.png').convert_alpha()
+game_font = pygame.font.Font('pygame_app/Font/TheHand.ttf', 25)
 
-start_img = pygame.image.load('pygame_app/snake/Graphics/Buttons/start.png').convert_alpha()
-exit_img = pygame.image.load('pygame_app/snake/Graphics/Buttons/exit.png').convert_alpha()
-resume_img = pygame.image.load('pygame_app/snake/Graphics/Buttons/resume.png').convert_alpha()
-purple_snake_img = pygame.image.load('pygame_app/snake/Graphics/Buttons/purple_snake.png').convert_alpha()
-green_snake_img = pygame.image.load('pygame_app/snake/Graphics/Buttons/green_snake.png').convert_alpha()
-blue_snake_img = pygame.image.load('pygame_app/snake/Graphics/Buttons/blue_snake.png').convert_alpha()
+start_img = pygame.image.load('pygame_app/Graphics/Buttons/start.png').convert_alpha()
+exit_img = pygame.image.load('pygame_app/Graphics/Buttons/exit.png').convert_alpha()
+resume_img = pygame.image.load('pygame_app/Graphics/Buttons/resume.png').convert_alpha()
+purple_snake_img = pygame.image.load('pygame_app/Graphics/Buttons/purple_snake.png').convert_alpha()
+green_snake_img = pygame.image.load('pygame_app/Graphics/Buttons/green_snake.png').convert_alpha()
+blue_snake_img = pygame.image.load('pygame_app/Graphics/Buttons/blue_snake.png').convert_alpha()
 
 SCREEN_UPDATE = pygame.USEREVENT
 pygame.time.set_timer(SCREEN_UPDATE, 150)
